@@ -34,12 +34,6 @@ public final class MainView extends Main {
         Button hello = new Button("Dire bonjour", e -> Notification.show("Bonjour " + name.getValue() + " !"));
         add(name, hello);
 
-        List<Person> people = List.of(new Person("Alice", 30), new Person("Bob", 25));
-
-        Grid<Person> grid = new Grid<>(Person.class);
-        grid.setItems(people);
-
-        add(grid);
 
     }
 
