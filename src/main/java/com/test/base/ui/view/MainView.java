@@ -1,10 +1,16 @@
 package com.test.base.ui.view;
 
+import java.util.List;
+
 import com.test.base.ui.component.ViewToolbar;
 
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Main;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import jakarta.annotation.security.PermitAll;
@@ -21,7 +27,20 @@ public final class MainView extends Main {
     MainView() {
         addClassName(LumoUtility.Padding.MEDIUM);
         add(new ViewToolbar("Main"));
-        add(new Div("Please select a view from the menu on the left."));
+        add(new Div("Please select a view from the menu on the left. BONJKOUfzeR"));
+        add(new Button("Clique-moi", e -> Notification.show("Bonjour Vaadin !")));
+
+        TextField name = new TextField("Ton nom");
+        Button hello = new Button("Dire bonjour", e -> Notification.show("Bonjour " + name.getValue() + " !"));
+        add(name, hello);
+
+        List<Person> people = List.of(new Person("Alice", 30), new Person("Bob", 25));
+
+        Grid<Person> grid = new Grid<>(Person.class);
+        grid.setItems(people);
+
+        add(grid);
+
     }
 
     /**
