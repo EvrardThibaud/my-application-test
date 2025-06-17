@@ -73,7 +73,7 @@ public class ProfilView extends VerticalLayout {
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://pokeapi.co/api/v2/pokemon"))
+                    .uri(URI.create("https://pokeapi.co/api/v2/pokemon?limit=-1"))
                     .GET()
                     .build();
 
@@ -86,7 +86,8 @@ public class ProfilView extends VerticalLayout {
             for (int i = 0; i < results.length(); i++) {
                 JSONObject pokemon = results.getJSONObject(i);
                 String name = pokemon.getString("name");
-                persons.add(new Person(name, 0, "PokeAPI"));
+                String source = pokemon.getString("url");
+                persons.add(new Person(name, 0, source));
             }
         } catch (Exception e) {
             e.printStackTrace();
